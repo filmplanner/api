@@ -1,2 +1,2 @@
-# pathe-api
-API for Pathé (The Netherlands)
+# pathe-server
+Server side of the Pathé Planner application
