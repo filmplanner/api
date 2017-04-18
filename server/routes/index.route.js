@@ -1,6 +1,9 @@
 import express from 'express';
 import userRoutes from './user.route';
 import authRoutes from './auth.route';
+import theaterRoutes from './theater.route';
+import movieRoutes from './movie.route';
+import showRoutes from './show.route';
 
 const router = express.Router(); // eslint-disable-line new-cap
 
@@ -14,5 +17,14 @@ router.use('/users', userRoutes);
 
 // mount auth routes at /auth
 router.use('/auth', authRoutes);
+
+// mount theater routes at /theaters
+router.use('/theater', theaterRoutes);
+
+// mount movie routes at /movies
+router.use('/movie', movieRoutes);
+
+// mount show routes at /shows
+router.use('/shows', showRoutes);
 
 export default router;
