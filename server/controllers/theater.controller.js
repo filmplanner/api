@@ -1,6 +1,18 @@
 import Theater from '../models/theater.model';
 
 /**
+ * Load theater and append to req.
+ */
+function load(req, res, next, id) {
+  Theater.get(id)
+    .then((theater) => {
+      req.theater = theater; // eslint-disable-line no-param-reassign
+      return next();
+    })
+    .catch(e => next(e));
+}
+
+/**
  * Get theater
  * @returns {Theater}
  */
@@ -21,4 +33,4 @@ function list(req, res, next) {
     .catch(e => next(e));
 }
 
-export default { get, list };
+export default { load, get, list };

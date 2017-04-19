@@ -11,4 +11,7 @@ router.route('/:movieId')
   /** GET /api/movies/:movieId - Get movies */
   .get(movieCtrl.get);
 
+/** Load movie when API with movieId route parameter is hit */
+router.param('movieId', movieCtrl.load);
+
 export default router;

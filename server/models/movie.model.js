@@ -20,12 +20,10 @@ const MovieSchema = new mongoose.Schema({
     required: true
   },
   url: {
-    type: String,
-    required: true
+    type: String
   },
   image: {
-    type: String,
-    required: true
+    type: String
   },
 });
 
@@ -48,11 +46,11 @@ MovieSchema.method({
 MovieSchema.statics = {
   /**
    * Get movie
-   * @param {ObjectId} id - The objectId of movie.
-   * @returns {Promise<User, APIError>}
+   * @param {string} movieId - The id of movie.
+   * @returns {Promise<Movie, APIError>}
    */
-  get(id) {
-    return this.findById(id)
+  get(movieId) {
+    return this.findOne({ id: movieId })
       .exec()
       .then((movie) => {
         if (movie) {
@@ -65,9 +63,9 @@ MovieSchema.statics = {
 
   /**
    * List movies in ascending order of 'id'.
-   * @param {number} skip - Number of users to be skipped.
-   * @param {number} limit - Limit number of users to be returned.
-   * @returns {Promise<User[]>}
+   * @param {number} skip - Number of movies to be skipped.
+   * @param {number} limit - Limit number of movies to be returned.
+   * @returns {Promise<Movie[]>}
    */
   list({ skip = 0, limit = 50 } = {}) {
     return this.find()

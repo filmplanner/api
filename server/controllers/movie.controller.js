@@ -1,6 +1,18 @@
 import Movie from '../models/movie.model';
 
 /**
+ * Load movie and append to req.
+ */
+function load(req, res, next, id) {
+  Movie.get(id)
+    .then((movie) => {
+      req.movie = movie; // eslint-disable-line no-param-reassign
+      return next();
+    })
+    .catch(e => next(e));
+}
+
+/**
  * Get movie
  * @returns {Movie}
  */
@@ -21,4 +33,4 @@ function list(req, res, next) {
     .catch(e => next(e));
 }
 
-export default { get, list };
+export default { load, get, list };

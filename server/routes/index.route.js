@@ -19,10 +19,10 @@ router.use('/users', userRoutes);
 router.use('/auth', authRoutes);
 
 // mount theater routes at /theaters
-router.use('/theater', theaterRoutes);
+router.use('/theaters', theaterRoutes);
 
 // mount movie routes at /movies
-router.use('/movie', movieRoutes);
+router.use('/movies', movieRoutes);
 
 // mount show routes at /shows
 router.use('/shows', showRoutes);

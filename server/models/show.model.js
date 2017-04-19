@@ -52,9 +52,9 @@ ShowSchema.method({
 ShowSchema.statics = {
   /**
    * List shows
-   * @param {number} skip - Number of users to be skipped.
-   * @param {number} limit - Limit number of users to be returned.
-   * @returns {Promise<User[]>}
+   * @param {number} skip - Number of shows to be skipped.
+   * @param {number} limit - Limit number of shows to be returned.
+   * @returns {Promise<Show[]>}
    */
   list({ skip = 0, limit = 50 } = {}) {
     return this.find()

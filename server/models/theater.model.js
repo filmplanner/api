@@ -20,8 +20,7 @@ const TheaterSchema = new mongoose.Schema({
     required: true
   },
   image: {
-    type: String,
-    required: true
+    type: String
   },
 });
 
@@ -44,11 +43,11 @@ TheaterSchema.method({
 TheaterSchema.statics = {
   /**
    * Get theater
-   * @param {ObjectId} id - The objectId of theater.
-   * @returns {Promise<User, APIError>}
+   * @param {string} theaterId - The id of theater.
+   * @returns {Promise<Theater, APIError>}
    */
-  get(id) {
-    return this.findById(id)
+  get(theaterId) {
+    return this.findOne({ id: theaterId })
       .exec()
       .then((theater) => {
         if (theater) {
@@ -60,10 +59,10 @@ TheaterSchema.statics = {
   },
 
   /**
-   * List theatres in ascending order of 'id'.
-   * @param {number} skip - Number of users to be skipped.
-   * @param {number} limit - Limit number of users to be returned.
-   * @returns {Promise<User[]>}
+   * List theaters in ascending order of 'id'.
+   * @param {number} skip - Number of theaters to be skipped.
+   * @param {number} limit - Limit number of theaters to be returned.
+   * @returns {Promise<Theater[]>}
    */
   list({ skip = 0, limit = 50 } = {}) {
     return this.find()
