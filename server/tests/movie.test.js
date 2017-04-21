@@ -11,7 +11,7 @@ chai.config.includeStack = true;
  * root level hooks
  */
 const mockMovie = {
-  id: '100',
+  id: 100,
   title: 'Harry Potter',
   description: 'Description of the Harry Potter movie',
   url: '',

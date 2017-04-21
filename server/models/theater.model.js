@@ -8,7 +8,7 @@ import APIError from '../helpers/APIError';
  */
 const TheaterSchema = new mongoose.Schema({
   id: {
-    type: String,
+    type: Number,
     required: true
   },
   name: {

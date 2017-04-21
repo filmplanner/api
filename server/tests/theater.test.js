@@ -11,7 +11,7 @@ chai.config.includeStack = true;
  * root level hooks
  */
 const mockTheater = {
-  id: '100',
+  id: 100,
   name: 'Pathe Spuimarkt',
   city: 'Den Haag',
   image: '',
@@ -22,7 +22,7 @@ let obj;
 before((done) => {
   theater = new Theater(mockTheater);
 
-  theater = theater.save()
+  obj = theater.save()
     .then((savedTheater) => {
       obj = savedTheater;
       done();

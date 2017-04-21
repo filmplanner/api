@@ -1,24 +1,23 @@
+import moment from 'moment';
 import Show from '../models/show.model';
 
 /**
- * Get theater
- * @returns {Show}
- */
-function get(req, res) {
-  return res.json(req.show);
-}
-
-/**
  * Get show list.
- * @property {number} req.query.skip - Number of shows to be skipped.
- * @property {number} req.query.limit - Limit number of shows to be returned.
+ * @property {date} req.query.date - Date of shows to be returned.
+ * @property {string} req.query.theaterIds - Comma seperated string of theaters.
+ * @property {string} req.query.movieIds - Comma seperated string of movies.
  * @returns {Show[]}
  */
 function list(req, res, next) {
-  const { limit = 50, skip = 0 } = req.query;
-  Show.list({ limit, skip })
-    .then(theaters => res.json(theaters))
+  const { date = new Date(), theaterIds = null, movieIds = null } = req.query;
+
+  const _date = moment(date, 'DD-MM-YYYY');
+  const _theaterIds = (theaterIds != null ? theaterIds.split(',') : []);
+  const _movieIds = (movieIds != null ? movieIds.split(',') : []);
+
+  Show.list(_date, _theaterIds, _movieIds)
+    .then(shows => res.json(shows))
     .catch(e => next(e));
 }
 
-export default { get, list };
+export default { list };

@@ -1,27 +1,30 @@
+import Promise from 'bluebird';
 import mongoose from 'mongoose';
+import httpStatus from 'http-status';
+import APIError from '../helpers/APIError';
 
 /**
  * Show Schema
  */
 const ShowSchema = new mongoose.Schema({
   theater_id: {
-    type: String,
+    type: Number,
     required: true
   },
   movie_id: {
-    type: String,
+    type: Number,
     required: true
   },
   date: {
-    type: String,
+    type: Date,
     required: true
   },
   start: {
-    type: String,
+    type: Date,
     required: true
   },
   end: {
-    type: String,
+    type: Date,
     required: true
   },
   type: {
@@ -29,7 +32,6 @@ const ShowSchema = new mongoose.Schema({
   },
   url: {
     type: String,
-    required: true
   },
 });
 
@@ -52,15 +54,36 @@ ShowSchema.method({
 ShowSchema.statics = {
   /**
    * List shows
-   * @param {number} skip - Number of shows to be skipped.
-   * @param {number} limit - Limit number of shows to be returned.
+   * @property {moment} req.query.date - Date of shows to be returned.
+   * @property {string[]} req.query.theaterIds - Array of theaters ids.
+   * @property {string[]} req.query.movieIds - Array of movie ids.
    * @returns {Promise<Show[]>}
    */
-  list({ skip = 0, limit = 50 } = {}) {
-    return this.find()
-      .skip(+skip)
-      .limit(+limit)
-      .exec();
+  list(date, theaterIds, movieIds) {
+    const query = this.find(
+      {
+        date: {
+          $gt: date.toString(),
+          $lte: date.add(1, 'days').toString()
+        }
+      });
+
+    if (theaterIds.length > 0) {
+      query.where('theater_id').in(theaterIds);
+    }
+
+    if (movieIds.length > 0) {
+      query.where('movie_id').in(movieIds);
+    }
+
+    return query.exec()
+      .then((shows) => {
+        if (shows.length > 0) {
+          return shows;
+        }
+        const err = new APIError('No shows found!', httpStatus.NOT_FOUND);
+        return Promise.reject(err);
+      });
   }
 };
 
