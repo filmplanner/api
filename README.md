@@ -5,7 +5,6 @@
 
 > Server side of the Pathé Planner application
 ## Build setup
-```
 Start server:
 ```sh
 # Start server
