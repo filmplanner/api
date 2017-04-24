@@ -18,7 +18,7 @@ before_deploy: yarn run build
 deploy:
   provider: heroku
   api_key: 2adfeb9f-36bb-4565-b998-1fdf2f576032
-  app: keepo-api
+  app: pathe-api
   on:
     repo: pathe-planner/pathe-server
   skip_cleanup: true
