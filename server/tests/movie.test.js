@@ -11,11 +11,9 @@ chai.config.includeStack = true;
  * root level hooks
  */
 const mockMovie = {
-  id: 100,
+  _id: 100,
   title: 'Harry Potter',
-  description: 'Description of the Harry Potter movie',
-  url: '',
-  image: '',
+  description: 'Description of the Harry Potter movie'
 };
 let movie;
 let obj;
@@ -40,10 +38,10 @@ after((done) => {
 });
 
 describe('## Movie APIs', () => {
-  describe('# GET /api/movies/:movieId', () => {
+  describe('# GET /api/movies/:id', () => {
     it('should get movie details', (done) => {
       request(app)
-        .get(`/api/movies/${mockMovie.id}`)
+        .get(`/api/movies/${mockMovie._id}`)
         .expect(httpStatus.OK)
         .then((res) => {
           expect(res.body.id).to.equal(mockMovie.id);

@@ -7,7 +7,7 @@ import APIError from '../helpers/APIError';
  * Theater Schema
  */
 const TheaterSchema = new mongoose.Schema({
-  id: {
+  _id: {
     type: Number,
     required: true
   },
@@ -42,12 +42,12 @@ TheaterSchema.method({
  */
 TheaterSchema.statics = {
   /**
-   * Get theater
-   * @param {string} theaterId - The id of theater.
+   * Get theater.
+   * @param {int} id - The id of theater.
    * @returns {Promise<Theater, APIError>}
    */
-  get(theaterId) {
-    return this.findOne({ id: theaterId })
+  get(id) {
+    return this.findById(id)
       .exec()
       .then((theater) => {
         if (theater) {
@@ -59,14 +59,13 @@ TheaterSchema.statics = {
   },
 
   /**
-   * List theaters in ascending order of 'id'.
+   * List theaters.
    * @param {number} skip - Number of theaters to be skipped.
    * @param {number} limit - Limit number of theaters to be returned.
    * @returns {Promise<Theater[]>}
    */
   list({ skip = 0, limit = 50 } = {}) {
     return this.find()
-      .sort({ id: 1 })
       .skip(+skip)
       .limit(+limit)
       .exec();

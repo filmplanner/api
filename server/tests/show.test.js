@@ -15,10 +15,8 @@ const mockShow = {
   movie_id: 100,
   theater_id: 100,
   date: Date(),
-  start: Date(),
-  end: Date(),
-  type: '',
-  url: '',
+  start: 30000,
+  end: 50000,
 };
 let show;
 let obj;

@@ -20,18 +20,18 @@ const ShowSchema = new mongoose.Schema({
     required: true
   },
   start: {
-    type: Date,
+    type: Number,
     required: true
   },
   end: {
-    type: Date,
+    type: Number,
     required: true
   },
   type: {
-    type: String,
+    type: Array
   },
   url: {
-    type: String,
+    type: String
   },
 });
 

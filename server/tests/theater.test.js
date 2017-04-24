@@ -11,10 +11,9 @@ chai.config.includeStack = true;
  * root level hooks
  */
 const mockTheater = {
-  id: 100,
+  _id: 100,
   name: 'Pathe Spuimarkt',
-  city: 'Den Haag',
-  image: '',
+  city: 'Den Haag'
 };
 let theater;
 let obj;
@@ -39,10 +38,10 @@ after((done) => {
 });
 
 describe('## Theater APIs', () => {
-  describe('# GET /api/theaters/:theaterId', () => {
+  describe('# GET /api/theaters/:id', () => {
     it('should get theater details', (done) => {
       request(app)
-        .get(`/api/theaters/${mockTheater.id}`)
+        .get(`/api/theaters/${mockTheater._id}`)
         .expect(httpStatus.OK)
         .then((res) => {
           expect(res.body.id).to.equal(mockTheater.id);
