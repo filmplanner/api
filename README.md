@@ -9,9 +9,6 @@ Start server:
 ```sh
 # Start server
 yarn start
-
-# Selectively set DEBUG env var to get logs
-DEBUG=express-mongoose-es6-rest-api:* yarn start
 ```
 
 Tests:
