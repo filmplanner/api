@@ -20,5 +20,5 @@ deploy:
   api_key: 2adfeb9f-36bb-4565-b998-1fdf2f576032
   app: pathe-api
   on:
-    repo: pathe-planner/pathe-server
+    repo: film-planner/api
   skip_cleanup: true

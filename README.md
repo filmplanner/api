@@ -1,7 +1,7 @@
 # pathe-server
-[![Build Status](https://travis-ci.org/pathe-planner/pathe-server.svg?branch=master)](https://travis-ci.org/pathe-planner/pathe-server)
-[![Coverage Status](https://coveralls.io/repos/github/pathe-planner/pathe-server/badge.svg?branch=master)](https://coveralls.io/github/pathe-planner/pathe-server?branch=master)
-[![Code Climate](https://img.shields.io/codeclimate/github/pathe-planner/pathe-server.svg?style=flat-square)](https://codeclimate.com/github/pathe-planner/pathe-server)
+[![Build Status](https://travis-ci.org/filmplanner/api.svg?branch=master)](https://travis-ci.org/filmplanner/api)
+[![Coverage Status](https://coveralls.io/repos/github/filmplanner/api/badge.svg?branch=master)](https://coveralls.io/github/filmplanner/api?branch=master)
+[![Code Climate](https://img.shields.io/codeclimate/github/filmplanner/api.svg?style=flat-square)](https://codeclimate.com/github/filmplanner/api)
 
 > Server side of the Pathé Planner application
 ## Build setup
