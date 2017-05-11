@@ -20,6 +20,7 @@ const mockShow = {
 };
 let show;
 let obj;
+const date = moment().format('DD-MM-YYYY');
 
 before((done) => {
   show = new Show(mockShow);
@@ -43,7 +44,7 @@ describe('## show APIs', () => {
   describe('# GET /api/shows/', () => {
     it('should get all shows from date', (done) => {
       request(app)
-        .get('/api/shows/' + moment().format('DD-MM-YYYY'))
+        .get(`/api/shows/${date}`)
         .expect(httpStatus.OK)
         .then((res) => {
           expect(res.body).to.be.an('array');
@@ -54,7 +55,7 @@ describe('## show APIs', () => {
 
     it('should get all shows from date & theaters', (done) => {
       request(app)
-        .get('/api/shows/' + moment().format('DD-MM-YYYY'))
+        .get(`/api/shows/${date}`)
         .query({ theaterIds: '100' })
         .expect(httpStatus.OK)
         .then((res) => {
@@ -66,7 +67,7 @@ describe('## show APIs', () => {
 
     it('should get all shows from date, theaters & movies', (done) => {
       request(app)
-        .get('/api/shows/' + moment().format('DD-MM-YYYY'))
+        .get(`/api/shows/${date}`)
         .query({ theaterIds: '100', movieIds: '100' })
         .expect(httpStatus.OK)
         .then((res) => {
@@ -78,7 +79,7 @@ describe('## show APIs', () => {
 
     it('should report error with message - Not found, when shows not found', (done) => {
       request(app)
-        .get('/api/shows/' + moment().format('DD-MM-YYYY'))
+        .get(`/api/shows/${date}`)
         .query({ theaterIds: '99', movieIds: '99' })
         .expect(httpStatus.NOT_FOUND)
         .then((res) => {

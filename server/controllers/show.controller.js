@@ -1,17 +1,18 @@
 import moment from 'moment';
+import httpStatus from 'http-status';
 import Show from '../models/show.model';
+import APIError from '../helpers/APIError';
 
 /**
  * Load date and append to req.
  */
 function load(req, res, next, date) {
-  if(date) {
-    req.date = moment(date, 'DD-MM-YYYY');
+  if (date) {
+    req.date = moment(date, 'DD-MM-YYYY'); // eslint-disable-line no-param-reassign
     return next();
-  } else {
-    const err = new APIError('Cant retreive data in the past!', httpStatus.NOT_FOUND);
-    next(err);
   }
+  const err = new APIError('Cant retreive data in the past!', httpStatus.NOT_FOUND);
+  return next(err);
 }
 
 /**
