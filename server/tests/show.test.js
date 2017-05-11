@@ -33,7 +33,6 @@ before((done) => {
 
 after((done) => {
   obj.remove();
-  // required because https://github.com/Automattic/mongoose/issues/1251#issuecomment-65793092
   mongoose.models = {};
   mongoose.modelSchemas = {};
   mongoose.connection.close();
@@ -44,8 +43,7 @@ describe('## show APIs', () => {
   describe('# GET /api/shows/', () => {
     it('should get all shows from date', (done) => {
       request(app)
-        .get('/api/shows')
-        .query({ date: moment().format('DD-MM-YYYY') })
+        .get('/api/shows/' + moment().format('DD-MM-YYYY'))
         .expect(httpStatus.OK)
         .then((res) => {
           expect(res.body).to.be.an('array');
@@ -56,8 +54,8 @@ describe('## show APIs', () => {
 
     it('should get all shows from date & theaters', (done) => {
       request(app)
-        .get('/api/shows')
-        .query({ date: moment().format('DD-MM-YYYY'), theaterIds: '100' })
+        .get('/api/shows/' + moment().format('DD-MM-YYYY'))
+        .query({ theaterIds: '100' })
         .expect(httpStatus.OK)
         .then((res) => {
           expect(res.body).to.be.an('array');
@@ -68,8 +66,8 @@ describe('## show APIs', () => {
 
     it('should get all shows from date, theaters & movies', (done) => {
       request(app)
-        .get('/api/shows')
-        .query({ date: moment().format('DD-MM-YYYY'), theaterIds: '100', movieIds: '100' })
+        .get('/api/shows/' + moment().format('DD-MM-YYYY'))
+        .query({ theaterIds: '100', movieIds: '100' })
         .expect(httpStatus.OK)
         .then((res) => {
           expect(res.body).to.be.an('array');
@@ -80,8 +78,8 @@ describe('## show APIs', () => {
 
     it('should report error with message - Not found, when shows not found', (done) => {
       request(app)
-        .get('/api/shows')
-        .query({ date: moment().format('DD-MM-YYYY'), theaterIds: '99', movieIds: '99' })
+        .get('/api/shows/' + moment().format('DD-MM-YYYY'))
+        .query({ theaterIds: '99', movieIds: '99' })
         .expect(httpStatus.NOT_FOUND)
         .then((res) => {
           expect(res.body.message).to.equal('Not Found');

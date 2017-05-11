@@ -12,7 +12,7 @@
   },
   "scripts": {
     "start": "gulp serve",
-    "start:debug": "cross-env DEBUG=pathe-server:* yarn start",
+    "start:debug": "cross-env DEBUG=api:* yarn start",
     "build": "gulp",
     "lint": "esw *.js server config --color",
     "lint:watch": "yarn lint -- --watch",
@@ -66,8 +66,9 @@
     "babel-cli": "6.18.0",
     "babel-core": "6.18.0",
     "babel-plugin-add-module-exports": "0.2.1",
-    "babel-preset-es2015": "6.16.0",
+    "babel-preset-es2015": "^6.16.0",
     "babel-preset-stage-2": "6.18.0",
+    "babel-register": "^6.24.1",
     "chai": "^3.4.1",
     "commitizen": "^2.9.2",
     "coveralls": "^2.11.6",
@@ -104,6 +105,8 @@
       "es2015",
       "stage-2"
     ],
+    "sourceMaps": true,
+    "retainLines": true,
     "plugins": [
       "add-module-exports"
     ]
